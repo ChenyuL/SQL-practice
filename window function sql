@@ -1,0 +1,11 @@
+# Write your MySQL query statement below
+select project_id, employee_id from 
+( select project_id,p.employee_id, dense_rank() over (partition by p.project_id order by experience_years desc ) r
+       from Project p
+       inner join Employee e
+       on p.employee_id=e.employee_id
+       ) pe
+where pe.r=1
+
+
+
